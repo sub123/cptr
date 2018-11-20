@@ -11,7 +11,7 @@ int main()
 	fclose(func);
 	char history[100][1000];
 	int j=0;
-	cout<<"cptr v0.0.1"<<endl<<"Built on gcc version 4.9.3 (Ubuntu 4.9.3-5ubuntu1~14.04)"<<endl<<"Type \"help\", \"credits\" for more information."<<endl;
+	cout<<"cptr v0.0.1"<<endl<<"Built on gcc version 4.9.3 (Ubuntu 4.9.3-5ubuntu1~16.04)"<<endl<<"Type \"help\", \"credits\" for more information and \"exit\" to exit the program."<<endl;
 	while(1)
 	{
 		cout<<endl<<">>>";
@@ -30,6 +30,10 @@ int main()
 			cout<<"Build by Subham Rathore"<<endl;
 			cout<<"In case you find any bugs, feel free to drop a mail at sbhm94@gmail.com.";
 			continue;
+		}
+		if(strcmp(input,"exit") == 0)
+		{
+			exit(0);
 		}
 		while(input[i]!='\0')
 		{
