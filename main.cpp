@@ -1,37 +1,37 @@
-#include <iostream>
-#include <cstdio>
-#include <cstring>
-#include <stdlib.h>
+#include <bits/stdc++.h>
+
 using namespace std;
+
+vector <string> history;
+
 int main()
 {
 	FILE *header=fopen("files/header.h","w");
 	FILE *func=fopen("files/func.h","w");
 	fclose(header);
 	fclose(func);
-	char history[100][1000];
 	int j=0;
 	cout<<"cptr v0.0.1"<<endl<<"Built on gcc version 4.9.3 (Ubuntu 4.9.3-5ubuntu1~16.04)"<<endl<<"Type \"help\", \"credits\" for more information and \"exit\" to exit the program."<<endl;
 	while(1)
 	{
 		cout<<endl<<">>>";
-		char input[1000];
-		cin.getline(input,sizeof(input));
+		string input;
+		getline(cin, input);
 		int i=0;
-		if(strcmp(input,"help")==0)
+		if(input == "help")
 		{
 			cout<<"cnterpreter aims at making testing of syntax for c/c++ easier. It does everything needed in background."<<endl;
 			cout<<"You begin with typing single line statements and cnterpreter will execute them for you as if c/c++ was an interpreted language."<<endl;
 			cout<<"You can begin with typing 'cout<<\"hello world\"'."<<endl;
 			continue;
 		}
-		if(strcmp(input,"credits")==0)
+		if(input == "credits")
 		{
 			cout<<"Build by Subham Rathore"<<endl;
 			cout<<"In case you find any bugs, feel free to drop a mail at sbhm94@gmail.com.";
 			continue;
 		}
-		if(strcmp(input,"exit") == 0)
+		if(input == "exit")
 		{
 			exit(0);
 		}
@@ -46,7 +46,7 @@ int main()
 		if(input[i]=='#')
 		{
 			FILE *header=fopen("files/header.h","a");
-			fputs(input,header);
+			fputs(input.c_str(),header);
 			fputs("\n",header);
 			fclose(header);
 		}
@@ -58,7 +58,7 @@ int main()
 			{
 				if(input[i]=='=')
 				{
-					strcpy(history[j],input);
+					history.push_back(input);
 					j++;
 					flag=1;
 					break;
@@ -67,7 +67,7 @@ int main()
 				{
 					if(input[i+1]==input[i])
 					{
-						strcpy(history[j],input);
+						history.push_back(input);
 						j++;
 						flag=1;
 						break;
@@ -83,12 +83,12 @@ int main()
 			fputs("using namespace std;\nvoid func()\n{\n\t",func);
 			for(int i=0;i<j;i++)
 			{
-				fputs(history[i],func);
+				fputs(history[i].c_str(),func);
 				fputs("\n",func);
 			}
 			if(flag==0)
 			{
-				fputs(input,func);
+				fputs(input.c_str(),func);
 			}
 			fputs("\n}\n",func);
 			fclose(func);
