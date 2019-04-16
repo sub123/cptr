@@ -2,7 +2,19 @@
 
 using namespace std;
 
+//Macros
+#define MAX_DISPLAY_HISTORY 10
+
+//Global History Table
 vector <string> history;
+
+void print_history()
+{
+	int hist_size = history.size();
+	int display_size = min(hist_size, MAX_DISPLAY_HISTORY); 
+	for(int i = hist_size - display_size; i < hist_size; i++)
+		cout<<history[i]<<endl;
+}
 
 int main()
 {
@@ -29,6 +41,12 @@ int main()
 		{
 			cout<<"Build by Subham Rathore"<<endl;
 			cout<<"In case you find any bugs, feel free to drop a mail at sbhm94@gmail.com.";
+			continue;
+		}
+		if(input == "history")
+		{
+			cout<<"History (max: "<<MAX_DISPLAY_HISTORY<<" ):"<<endl;
+			print_history();
 			continue;
 		}
 		if(input == "exit")
